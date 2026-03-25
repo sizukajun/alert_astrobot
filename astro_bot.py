@@ -3,6 +3,16 @@ from bs4 import BeautifulSoup
 import os
 import sys
 
+
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+CHAT_ID = os.environ.get("CHAT_ID")
+
+# 제대로 읽어오는지 테스트하는 코드 (보안을 위해 앞부분만 출력)
+if not TELEGRAM_TOKEN:
+    print("❌ 에러: TELEGRAM_TOKEN 시크릿을 읽어오지 못했습니다!")
+else:
+    print(f"✅ 토큰 앞부분 확인: {TELEGRAM_TOKEN[:5]}***")
+    
 # --- 필터링 설정 구간 ---
 # 원하는 키워드를 리스트에 넣으세요. (대소문자 구분 안 함)
 KEYWORDS = ["2600", "OAG", "필터", "EFW", "174", "220", "장비", "불용품"]
