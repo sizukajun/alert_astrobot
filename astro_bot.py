@@ -7,7 +7,7 @@ import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
 # --- 설정 ---
-KEYWORDS = ["C8", "EdgeHD", "harmonic", "SCT", "마운트"]
+KEYWORDS = ["2600", "OAG", "필터", "EFW", "174", "220", "정리", "불용품"]
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("CHAT_ID")
 URL = "https://astromart.co.kr/market/?category1=%ED%8C%90%EB%A7%A4&mod=list&pageid=1"
