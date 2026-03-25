@@ -13,7 +13,18 @@ URL = "https://astromart.co.kr/market/?category1=%ED%8C%90%EB%A7%A4&mod=list&pag
 
 def send_telegram(message):
     api_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    requests.get(api_url, params={'chat_id': CHAT_ID, 'text': message})
+    params = {'chat_id': CHAT_ID, 'text': message}
+    
+    # 텔레그램 서버의 실제 응답을 확인합니다.
+    response = requests.get(api_url, params=params)
+    res_json = response.json()
+    
+    if res_json.get("ok"):
+        print("텔레그램 전송 성공!")
+    else:
+        # 여기가 핵심입니다. 왜 실패했는지 에러 메시지를 로그에 출력합니다.
+        print(f"전송 실패! 에러 코드: {res_json.get('error_code')}")
+        print(f"에러 내용: {res_json.get('description')}")
 
 def check_market():
     headers = {'User-Agent': 'Mozilla/5.0'}
