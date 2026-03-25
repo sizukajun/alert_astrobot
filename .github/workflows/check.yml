@@ -1,19 +1,22 @@
-name: Astromart Alert bot
+name: Astromart Filter Alert
 
 on:
   schedule:
-    - cron: '*/10 * * * *' # 10분마다 실행
-  workflow_dispatch: # 수동 실행 버튼
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions: # 🚩 추가: 저장소에 파일 쓸 권한 부여
+  contents: write
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
       - name: Install Dependencies
         run: pip install requests beautifulsoup4
       - name: Run Script
@@ -21,3 +24,11 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python astro_bot.py
+      
+      - name: Commit and Push changes # 🚩 추가: 보낸 글 ID를 저장소에 저장
+        run: |
+          git config --global user.name "Astro-Bot"
+          git config --global user.email "bot@github.com"
+          git add notified_ids.txt
+          git commit -m "Update notified post IDs" || echo "No changes to commit"
+          git push
