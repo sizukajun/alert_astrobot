@@ -2,7 +2,7 @@ name: Astromart Filter Alert
 
 on:
   schedule:
-    - cron: '*/8 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions: # 🚩 추가: 저장소에 파일 쓸 권한 부여
