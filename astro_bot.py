@@ -5,7 +5,7 @@ import sys
 
 # --- 필터링 설정 구간 ---
 # 원하는 키워드를 리스트에 넣으세요. (대소문자 구분 안 함)
-KEYWORDS = ["2600", "OAG", "필터", "EFW", "174", "220", "장비", "불용품"]
+KEYWORDS = ["2600", "OAG", "필터", "6se", "174", "220", "장비", "불용품"]
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("CHAT_ID")
